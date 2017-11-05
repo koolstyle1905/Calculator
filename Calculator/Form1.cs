@@ -37,28 +37,54 @@ namespace Calculator
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            parseNum();
-            sign = "+";
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                parseNum();
+                sign = "+";
+            }
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            
-            parseNum();
-            sign = "-";
-            
+            if(txtResult.Text == "")
+            {
+                txtResult.Text += "-";
+            }
+            else
+            {
+                parseNum();
+                sign = "-";
+            }
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            parseNum();
-            sign = "*";
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                parseNum();
+                sign = "*";
+            }
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            parseNum();
-            sign = "/";
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                parseNum();
+                sign = "/";
+            }
         }
 
         private void displayResult()
@@ -115,10 +141,7 @@ namespace Calculator
                         }
                         input = false;
                         break;
-                    case "x^2": temp3 = temp1 *= temp1; displayResult(); input = false; break;
-                    case "x^3": temp3 = temp1 = (temp1 * temp1 * temp1); displayResult(); input = false; break;  
-                    case "√": temp3 = temp1 = Math.Sqrt(temp1); displayResult(); input = false; break;
-                    
+                      
                 }
                 input = false;
             }
@@ -142,19 +165,33 @@ namespace Calculator
 
         private void btnNegative_Click(object sender, EventArgs e)
         {
-
+            if (txtResult.Text.StartsWith("-"))
+            {
+                txtResult.Text = txtResult.Text.Substring(1);
+            }
+            else if (!string.IsNullOrEmpty(txtResult.Text) && decimal.Parse(txtResult.Text) != 0)
+            {
+                txtResult.Text = "-" + txtResult.Text;
+            }
         }
 
         private void btnFactorial_Click(object sender, EventArgs e)
         {
-            temp1 = Convert.ToDouble(txtResult.Text);
-            int factorial = 1;
-            for (int i = 1; i <= temp1; i++)
+            if (txtResult.Text == "")
             {
-                temp3 = factorial *= i;
+                MessageBox.Show("Please input number first", "Error");
             }
-            txtResult.Text = factorial.ToString();
-            input = false;
+            else
+            {
+                temp1 = Convert.ToDouble(txtResult.Text);
+                int factorial = 1;
+                for (int i = 1; i <= temp1; i++)
+                {
+                    temp3 = factorial *= i;
+                }
+                txtResult.Text = factorial.ToString();
+                input = false;
+            }
         }
 
         private void btnPi_Click(object sender, EventArgs e)
@@ -166,8 +203,15 @@ namespace Calculator
 
         private void btnMod_Click(object sender, EventArgs e)
         {
-            parseNum();
-            sign = "%";
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                parseNum();
+                sign = "%";
+            }
         }
 
         private void btnExp_Click(object sender, EventArgs e)
@@ -312,12 +356,6 @@ namespace Calculator
                         txtResult.Text += ".";
                     }
                     break;
-                case "+/-":
-                    if (!(txtResult.Text.Contains('-') || txtResult.Text.Contains('-')))
-                    {
-                        txtResult.Text += "-";
-                    }
-                    break;
                 case "Inverse":
                     btnInverse.Text = "Inverse Active";
                     btnSqrt.Text = "1/x";
@@ -406,17 +444,218 @@ namespace Calculator
 
         private void btnCos_Click(object sender, EventArgs e)
         {
+            double temp4;
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                if (radDegree.Checked == true)
+                {
+                    if (btnCos.Text == "Cos")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Cos(temp4);
+                        txtResult.Text = temp3.ToString();
 
+                    }
+                    else if (btnCos.Text == "Cos-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Acos(temp4);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnCos.Text == "Cosh")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Cosh(temp4);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnCos.Text == "Cosh-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Log(temp4 + Math.Sqrt(Math.Pow(temp4, 2) - 1));
+                        txtResult.Text = temp3.ToString();
+                    }
+                }
+                else if (radRadian.Checked == true)
+                {
+                    if (btnCos.Text == "Cos")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Cos(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnCos.Text == "Cos-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Acos(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnCos.Text == "Cosh")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Cosh(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnCos.Text == "Cosh-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Log(temp1 + Math.Sqrt(Math.Pow(temp1, 2) - 1));
+                        txtResult.Text = temp3.ToString();
+                    }
+                }
+                input = false;
+            }
         }
 
         private void btnTan_Click(object sender, EventArgs e)
         {
+            double temp4;
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                if (radDegree.Checked == true)
+                {
+                    if (btnTan.Text == "Tan")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Tan(temp4);
+                        txtResult.Text = temp3.ToString();
 
+                    }
+                    else if (btnTan.Text == "Tan-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Atan(temp4);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnTan.Text == "Tanh")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Tanh(temp4);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnTan.Text == "Tanh-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = 0.5 * Math.Log((1 + temp4) / (1 - temp4));
+                        txtResult.Text = temp3.ToString();
+                    }
+                }
+                else if (radRadian.Checked == true)
+                {
+                    if (btnTan.Text == "Tan")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Tan(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnTan.Text == "Tan-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Atan(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnTan.Text == "Tanh")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Tanh(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnTan.Text == "Tanh-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = 0.5 * Math.Log((1 + temp1) / (1 - temp1));
+                        txtResult.Text = temp3.ToString();
+                    }
+                }
+                input = false;
+            }
         }
 
         private void btnSin_Click(object sender, EventArgs e)
         {
+            double temp4;
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                if (radDegree.Checked == true)
+                {
+                    if (btnSin.Text == "Sin")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Sin(temp4);
+                        txtResult.Text = temp3.ToString();
 
+                    }
+                    else if (btnSin.Text == "Sin-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Asin(temp4);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnSin.Text == "Sinh")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Sinh(temp4);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnSin.Text == "Sinh-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp4 = RadianToDegree(temp1);
+                        temp3 = Math.Log(temp4 + Math.Sqrt(Math.Pow(temp4, 2) + 1));
+                        txtResult.Text = temp3.ToString();
+                    }
+                }
+                else if (radRadian.Checked == true)
+                {
+                    if (btnSin.Text == "Sin")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Sin(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnSin.Text == "Sin-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Asin(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnSin.Text == "Sinh")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Sinh(temp1);
+                        txtResult.Text = temp3.ToString();
+                    }
+                    else if (btnSin.Text == "Sinh-1")
+                    {
+                        temp1 = Convert.ToDouble(txtResult.Text);
+                        temp3 = Math.Log(temp1 + Math.Sqrt(Math.Pow(temp1, 2) + 1));
+                        txtResult.Text = temp3.ToString();
+                    }
+                }
+                input = false;
+            }
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -433,7 +672,7 @@ namespace Calculator
                 }
                 else
                 {
-                    txtResult.Text = "Math Error";
+                    MessageBox.Show("Please input number first", "Error");
                     input = false;
                 }
                 input = false;
@@ -450,7 +689,7 @@ namespace Calculator
                 }
                 else
                 {
-                    txtResult.Text = "Math Error";
+                    MessageBox.Show("Please input number first", "Error");
                     input = false;
                 }
             }
@@ -458,15 +697,22 @@ namespace Calculator
 
         private void btnXPowY_Click(object sender, EventArgs e)
         {
-            if(btnXPowY.Text == "x^y")
+            if (txtResult.Text == "")
             {
-                parseNum();
-                sign = "^";
+                MessageBox.Show("Please input number first", "Error");
             }
             else
             {
-                parseNum();
-                sign = "y√x";
+                if (btnXPowY.Text == "x^y")
+                {
+                    parseNum();
+                    sign = "^";
+                }
+                else
+                {
+                    parseNum();
+                    sign = "y√x";
+                }
             }
         }
 
@@ -476,7 +722,7 @@ namespace Calculator
             {
                 if (string.IsNullOrEmpty(txtResult.Text))
                 {
-                    txtResult.Text = "Empty Input";
+                    MessageBox.Show("Please input number first", "Error");
                     input = false;
                 }
                 else if (double.TryParse(txtResult.Text.Trim(), out temp1))
@@ -520,27 +766,59 @@ namespace Calculator
 
         private void btnSqrt_Click(object sender, EventArgs e)
         {
-            if(btnSqrt.Text == "√")
+            if(txtResult.Text == "")
             {
-                parseNum();
+                MessageBox.Show("Please input number first", "Error");
             }
             else
             {
-                temp1 = Convert.ToDouble(txtResult.Text);
-                temp3 = 1 / temp1;
-                txtResult.Text = temp3.ToString();
-                input = false;
+                if (btnSqrt.Text == "√")
+                {
+                    temp1 = Convert.ToDouble(txtResult.Text);
+                    temp3 = temp1 = Math.Sqrt(temp1);
+                    txtResult.Text = temp3.ToString();
+                    input = false;
+                }
+                else
+                {
+                    temp1 = Convert.ToDouble(txtResult.Text);
+                    temp3 = 1 / temp1;
+                    txtResult.Text = temp3.ToString();
+                    input = false;
+                }
             }
+            
         }
 
         private void btnXPow2_Click(object sender, EventArgs e)
         {
-            parseNum();
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                if (btnSqrt.Text == "x^2")
+                {
+                    temp1 = Convert.ToDouble(txtResult.Text);
+                    temp3 = temp1 = Math.Pow(temp1,2);
+                    txtResult.Text = temp3.ToString();
+                    input = false;
+                }
+                else
+                {
+                    temp1 = Convert.ToDouble(txtResult.Text);
+                    temp3 = temp1 = Math.Pow(temp1, 3);
+                    txtResult.Text = temp3.ToString();
+                    input = false;
+                }
+            }
+            
         }
 
         private double DegreeToRadian(double angle)
         {
-            return Math.PI * angle / 180.0;
+            return angle * (Math.PI / 180.0);
         }
 
         private double RadianToDegree(double angle)

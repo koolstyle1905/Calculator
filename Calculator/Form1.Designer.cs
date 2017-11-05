@@ -183,7 +183,7 @@
             this.btnSin.Name = "btnSin";
             this.btnSin.Size = new System.Drawing.Size(51, 41);
             this.btnSin.TabIndex = 5;
-            this.btnSin.Text = "sin";
+            this.btnSin.Text = "Sin";
             this.btnSin.Click += new System.EventHandler(this.btnSin_Click);
             // 
             // btnCos
@@ -194,7 +194,7 @@
             this.btnCos.Name = "btnCos";
             this.btnCos.Size = new System.Drawing.Size(51, 41);
             this.btnCos.TabIndex = 5;
-            this.btnCos.Text = "cos";
+            this.btnCos.Text = "Cos";
             this.btnCos.Click += new System.EventHandler(this.btnCos_Click);
             // 
             // btnTan
@@ -205,7 +205,7 @@
             this.btnTan.Name = "btnTan";
             this.btnTan.Size = new System.Drawing.Size(51, 41);
             this.btnTan.TabIndex = 5;
-            this.btnTan.Text = "tan";
+            this.btnTan.Text = "Tan";
             this.btnTan.Click += new System.EventHandler(this.btnTan_Click);
             // 
             // btnXPow2
