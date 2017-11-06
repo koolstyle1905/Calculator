@@ -141,7 +141,7 @@ namespace Calculator
                         }
                         input = false;
                         break;
-                      
+                    case "Exp": temp3 = temp1 *= Math.Pow(10, temp2); displayResult(); break;
                 }
                 input = false;
             }
@@ -216,7 +216,15 @@ namespace Calculator
 
         private void btnExp_Click(object sender, EventArgs e)
         {
-            
+            if (txtResult.Text == "")
+            {
+                MessageBox.Show("Please input number first", "Error");
+            }
+            else
+            {
+                parseNum();
+                sign = "Exp";
+            }
         }
 
         private void btnC_Click(object sender, EventArgs e)
@@ -456,7 +464,7 @@ namespace Calculator
                     if (btnCos.Text == "Cos")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Cos(temp4);
                         txtResult.Text = temp3.ToString();
 
@@ -464,21 +472,21 @@ namespace Calculator
                     else if (btnCos.Text == "Cos-1")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Acos(temp4);
                         txtResult.Text = temp3.ToString();
                     }
                     else if (btnCos.Text == "Cosh")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Cosh(temp4);
                         txtResult.Text = temp3.ToString();
                     }
                     else if (btnCos.Text == "Cosh-1")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Log(temp4 + Math.Sqrt(Math.Pow(temp4, 2) - 1));
                         txtResult.Text = temp3.ToString();
                     }
@@ -489,7 +497,7 @@ namespace Calculator
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
                         temp3 = Math.Cos(temp1);
-                        txtResult.Text = temp3.ToString();
+                        txtResult.Text = temp3.ToString("+#;-#;0");
                     }
                     else if (btnCos.Text == "Cos-1")
                     {
@@ -528,7 +536,7 @@ namespace Calculator
                     if (btnTan.Text == "Tan")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Tan(temp4);
                         txtResult.Text = temp3.ToString();
 
@@ -536,21 +544,21 @@ namespace Calculator
                     else if (btnTan.Text == "Tan-1")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Atan(temp4);
                         txtResult.Text = temp3.ToString();
                     }
                     else if (btnTan.Text == "Tanh")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Tanh(temp4);
                         txtResult.Text = temp3.ToString();
                     }
                     else if (btnTan.Text == "Tanh-1")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = 0.5 * Math.Log((1 + temp4) / (1 - temp4));
                         txtResult.Text = temp3.ToString();
                     }
@@ -561,7 +569,7 @@ namespace Calculator
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
                         temp3 = Math.Tan(temp1);
-                        txtResult.Text = temp3.ToString();
+                        txtResult.Text = temp3.ToString("+#;-#;0");
                     }
                     else if (btnTan.Text == "Tan-1")
                     {
@@ -600,7 +608,7 @@ namespace Calculator
                     if (btnSin.Text == "Sin")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Sin(temp4);
                         txtResult.Text = temp3.ToString();
 
@@ -608,21 +616,21 @@ namespace Calculator
                     else if (btnSin.Text == "Sin-1")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Asin(temp4);
                         txtResult.Text = temp3.ToString();
                     }
                     else if (btnSin.Text == "Sinh")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Sinh(temp4);
                         txtResult.Text = temp3.ToString();
                     }
                     else if (btnSin.Text == "Sinh-1")
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
-                        temp4 = RadianToDegree(temp1);
+                        temp4 = DegreeToRadian(temp1);
                         temp3 = Math.Log(temp4 + Math.Sqrt(Math.Pow(temp4, 2) + 1));
                         txtResult.Text = temp3.ToString();
                     }
@@ -633,7 +641,7 @@ namespace Calculator
                     {
                         temp1 = Convert.ToDouble(txtResult.Text);
                         temp3 = Math.Sin(temp1);
-                        txtResult.Text = temp3.ToString();
+                        txtResult.Text = temp3.ToString("+#;-#;0");
                     }
                     else if (btnSin.Text == "Sin-1")
                     {
@@ -818,12 +826,12 @@ namespace Calculator
 
         private double DegreeToRadian(double angle)
         {
-            return angle * (Math.PI / 180.0);
+            return angle * Math.PI / 180.0;
         }
 
         private double RadianToDegree(double angle)
         {
-            return angle * (180.0 / Math.PI);
+            return angle * 180.0 / Math.PI;
         }
 
 
