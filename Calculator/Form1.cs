@@ -12,6 +12,7 @@ namespace Calculator
 {
     public partial class Form1 : Form
     {
+        private bool nonNumberEntered = false;
         double temp1 = 0, temp2 = 0, temp3 = 0;
         bool input = true;
         String sign = "";
@@ -442,7 +443,7 @@ namespace Calculator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            txtResult.Focus();
         }
 
         private void calculatorInformationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -834,6 +835,29 @@ namespace Calculator
             return angle * 180.0 / Math.PI;
         }
 
+        private void txtResult_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (nonNumberEntered == true)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtResult_KeyDown(object sender, KeyEventArgs e)
+        {
+            nonNumberEntered = false;
+
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if (e.KeyCode != Keys.Back)
+                    {
+                        nonNumberEntered = true;
+                    }
+                }
+            }
+        }
 
     }
 }

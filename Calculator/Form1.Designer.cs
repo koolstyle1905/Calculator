@@ -106,6 +106,8 @@
             this.txtResult.Size = new System.Drawing.Size(279, 52);
             this.txtResult.TabIndex = 1;
             this.txtResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtResult.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtResult_KeyDown);
+            this.txtResult.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtResult_KeyPress);
             // 
             // radDegree
             // 
