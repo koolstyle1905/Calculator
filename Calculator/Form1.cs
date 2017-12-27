@@ -55,6 +55,10 @@ namespace Calculator
             {
                 txtResult.Text += "-";
             }
+            else if (txtResult.Text == "-")
+            {
+                MessageBox.Show("Can't ", "Error");
+            }
             else
             {
                 parseNum();

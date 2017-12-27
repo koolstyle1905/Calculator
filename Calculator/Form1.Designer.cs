@@ -562,6 +562,7 @@
             this.Controls.Add(this.radDegree);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Calculator";
