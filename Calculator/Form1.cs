@@ -57,7 +57,7 @@ namespace Calculator
             }
             else if (txtResult.Text == "-")
             {
-                MessageBox.Show("Can't ", "Error");
+                MessageBox.Show("Can't input twice", "Error");
             }
             else
             {
